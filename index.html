@@ -309,7 +309,7 @@
                     if (index === 8) {
                         piece.classList.add('empty');
                     } else {
-                        piece.style.backgroundImage = "url('images/puzzle.jpg')";
+                        piece.style.backgroundImage = "url('puzzle.jpg')";
                         piece.style.backgroundPosition = `${-(index % 3) * 120}px ${-Math.floor(index / 3) * 120}px`;
                         piece.dataset.index = index;
                         piece.onclick = () => swapPieces(i, j);
