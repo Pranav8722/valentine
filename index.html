@@ -240,10 +240,16 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
+/*             .container {
                 width: 90%;
                 padding: 20px;
-            }
+            } */
+              .container {
+        width: 100%; /* Full width for small screens */
+        padding: 15px; /* Adjust padding for small screens */
+        margin: 0 auto; /* Ensure it remains centered */
+    }
+
 
             h1 {
                 font-size: 2.5rem;
@@ -258,10 +264,16 @@
                 width: 150%;
                 max-width: 4000px;
             }
+             .puzzle-piece {
+        width: 100%; /* Make each piece responsive */
+        max-width: 100%; /* Ensure no overflow */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 8px; /* Optional rounded corners for a cleaner look */
+    }
 
-            .puzzle-piece {
+/*             .puzzle-piece {
                 max-width: 120px;
-            }
+            } */
 
             .love-button {
                 padding: 12px 24px;
