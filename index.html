@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale: 1.0">
+    <title>Love Puzzle for Amruta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, rgba(255, 96, 202, 0.9), rgba(124, 9, 66, 0.8));
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            animation: fadeIn 2s ease-in;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-hearts img {
+            animation: floatHearts 6s infinite linear;
+        }
+
+        @keyframes floatHearts {
+            0% {
+                transform: translateY(-50px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Glowing Heart Animation */
+        .heart {
+            font-size: 80px;
+            color: #ff66b2;
+            animation: heartGlow 1.5s infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes heartGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 20, 147, 0.6);
+            }
+            50% {
+                text-shadow: 0 0 40px rgba(255, 255, 255, 0.9), 0 0 50px rgba(255, 20, 147, 0.8);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 20, 147, 0.6);
+            }
+        }
+
+        /* Header Styling */
+        h1 {
+            font-size: 4.5rem;
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 4px 4px 20px rgba(255, 255, 255, 0.8), 0px 0px 40px rgba(255, 20, 147, 0.9);
+            animation: slideIn 1.5s ease-out;
+        }
+
+        /* Title Animation */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Button Styling */
+        .love-button {
+            background-color: #ff66b2;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 22px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0px 10px 20px rgba(255, 105, 180, 0.5);
+            animation: buttonPulse 1.5s infinite ease-in-out;
+        }
+
+        /* Button Hover Effects */
+        .love-button:hover {
+            background-color: #ff3385;
+            transform: scale(1.1);
+            box-shadow: 0px 15px 30px rgba(255, 105, 180, 0.7);
+            filter: brightness(1.2);
+        }
+
+        @keyframes buttonPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.7); /* Darker background for better contrast */
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-in;
+            backdrop-filter: blur(15px); /* Adds soft blur effect */
+        }
+
+        /* Hidden Message Styling */
+        .hidden-message {
+            display: none;
+            font-size: 24px;
+            margin-top: 20px;
+            color: #ffcc00;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.7);
+            animation: fadeInMessage 2s ease-out;
+        }
+
+        @keyframes fadeInMessage {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Puzzle Styling */
+        .puzzle-container {
+            display: grid;
+            grid-template-columns: repeat(3, 120px);
+            grid-template-rows: repeat(3, 120px);
+            gap: 0.1px;
+            width: 380px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .puzzle-container:hover {
+            transform: scale(1.02);
+        }
+
+        /* Puzzle Piece Styling */
+        .puzzle-piece {
+            width: 120px;
+            height: 120px;
+            background-size: 360px 360px;
+            border: 1px solid white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: pieceAnim 0.3s ease-out;
+        }
+
+        /* Ensure Proper Visibility of Puzzle Pieces */
+        .puzzle-piece {
+            color: white;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8); /* Added text shadow to enhance contrast */
+        }
+
+        @keyframes pieceAnim {
+            from {
+                transform: scale(0.9);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .empty {
+            background: none;
+            border: none;
+            cursor: default;
+        }
+
+        .finish-button {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .finish-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .puzzle-container {
+                width: 100%;
+                padding: 5px;
+            }
+
+            .love-button {
+                padding: 12px 24px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Hearts Animation
+    <div class="floating-hearts">
+        <img src="images/heart.gif" style="position: absolute; left: 10%; animation-duration: 6s;">
+        <img src="images/heart.gif" style="position: absolute; left: 30%; animation-duration: 8s;">
+        <img src="images/heart.gif" style="position: absolute; left: 50%; animation-duration: 7s;">
+        <img src="images/heart.gif" style="position: absolute; left: 70%; animation-duration: 9s;">
+    </div> -->
+
+    <div class="container">
+        <h1>Love Puzzle for Amruta 💖</h1>
+        <p>Solve the puzzle to unlock a special message!</p>
+        <div class="puzzle-container" id="puzzle"></div>
+        <p class="hidden-message" id="hiddenMessage">You did it, Amruta! You complete me, just like this puzzle! 💕</p>
+        <button class="love-button" onclick="shufflePuzzle()">Shuffle Puzzle</button>
+        <button class="finish-button" id="finishButton" onclick="redirectToQuiz()">Finish</button>
+        <div class="heart">❤️</div>
+    </div>
+
+    <script>
+        const puzzleContainer = document.getElementById('puzzle');
+        const hiddenMessage = document.getElementById('hiddenMessage');
+        const finishButton = document.getElementById('finishButton');
+        let grid = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8]
+        ];  
+        let emptyPos = { x: 2, y: 2 };
+
+        const correctOrder = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8]
+        ];
+
+        function createPuzzle() {
+            puzzleContainer.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    const piece = document.createElement('div');
+                    piece.classList.add('puzzle-piece');
+                    const index = grid[i][j];
+
+                    if (index === 8) {
+                        piece.classList.add('empty');
+                    } else {
+                        piece.style.backgroundImage = "url('images/puzzle.jpg')";
+                        piece.style.backgroundPosition = `${-(index % 3) * 120}px ${-Math.floor(index / 3) * 120}px`;
+                        piece.dataset.index = index;
+                        piece.onclick = () => swapPieces(i, j);
+                    }
+                    puzzleContainer.appendChild(piece);
+                }
+            }
+            hiddenMessage.style.display = 'none';
+            finishButton.style.display = 'none';  // Hide the Finish button initially
+        }
+
+        function shufflePuzzle() {
+            let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            numbers = shuffle(numbers);
+
+            let k = 0;
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    grid[i][j] = numbers[k++];
+                }
+            }
+
+            emptyPos = findEmptyPos();
+            createPuzzle();
+        }
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function findEmptyPos() {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (grid[i][j] === 8) {
+                        return { x: i, y: j };
+                    }
+                }
+            }
+        }
+
+        function swapPieces(x, y) {
+            const dx = Math.abs(emptyPos.x - x);
+            const dy = Math.abs(emptyPos.y - y);
+
+            if (dx + dy === 1) {
+                grid[emptyPos.x][emptyPos.y] = grid[x][y];
+                grid[x][y] = 8;
+
+                emptyPos = { x, y };
+
+                createPuzzle();
+                checkCompletion();
+            }
+        }
+
+        function checkCompletion() {
+            if (JSON.stringify(grid) === JSON.stringify(correctOrder)) {
+                hiddenMessage.style.display = 'block';
+                finishButton.style.display = 'inline-block'; // Show the Finish button after completion
+            }
+        }
+
+        function redirectToQuiz() {
+            window.location.href = 'quiz.html';  // Redirect to the quiz page
+        }
+
+        createPuzzle();
+    </script>
+</body>
+</html>
