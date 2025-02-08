@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale: 1.0">
-    <title>Your Letter</title>
+    <title>Quiz for Amruta</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         /* Basic Reset */
@@ -32,10 +32,10 @@
 
         /* Container Styling */
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: auto;
             background: rgba(0, 0, 0, 0.7); /* Darker background for better contrast */
-            padding: 20px;
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -46,6 +46,7 @@
             font-size: 3rem;
             text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 20, 147, 0.9);
             animation: slideIn 1.5s ease-out;
+            margin-bottom: 30px;
         }
 
         @keyframes slideIn {
@@ -59,14 +60,108 @@
             }
         }
 
-        /* Letter Styling */
-        .letter {
-            font-size: 18px;
-            margin-top: 20px;
-            color: #fff;
+        /* Question Styling */
+        .question {
+            margin-bottom: 25px;
             text-align: left;
-            font-weight: 300;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); /* Added text-shadow for contrast */
+            font-size: 18px;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Button Container Styling */
+        .button-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Button Styling */
+        .submit-button {
+            background-color: #ff66b2;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 3s infinite;
+        }
+
+        /* Beating Effect (Pulse) */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 5px rgba(255, 105, 180, 0.8), 0 0 20px rgba(255, 105, 180, 0.6);
+            }
+            50% {
+                transform: scale(1.1); /* Beating effect (scale) */
+                box-shadow: 0 0 10px rgba(255, 105, 180, 1), 0 0 30px rgba(255, 105, 180, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 5px rgba(255, 105, 180, 0.8), 0 0 20px rgba(255, 105, 180, 0.6);
+            }
+        }
+
+        /* Hover Glow Effect */
+        .submit-button:hover {
+            background-color: #ff3385;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.9), 0 0 50px rgba(255, 20, 147, 0.7);
+        }
+
+        /* Result Window */
+        .result-container {
+            margin-top: 30px;
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .result-container img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .result-container h2 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .result-container p {
+            font-size: 20px;
+        }
+
+        /* Letter Section (appears after passing the quiz) */
+        .letter-section {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .letter-section img {
+            width: 150px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .letter-section img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Responsive Design */
@@ -75,20 +170,185 @@
                 font-size: 2rem;
             }
 
-            .letter {
+            .question label {
                 font-size: 16px;
+            }
+
+            .submit-button {
+                font-size: 16px;
+            }
+
+            .result-container h2,
+            .result-container p {
+                font-size: 18px;
             }
         }
     </style>
+   
+ 
 </head>
 <body>
     <div class="container">
-        <h1>To Amruta 💖</h1>
-        <p class="letter">
-            My dearest Amruta,  
-            <br><br>
-            You are the love of my life, the one who completes me in every way. I can't wait to spend forever with you.
-        </p>
+        <h1>hee hee..Quiz Time! 💖</h1>
+        
+        <form id="quizForm">
+            <div class="question">
+                <label>1. day when we 1st talk online?</label>
+                <input type="radio" name="q1" value="A"> 31 jan
+                <input type="radio" name="q1" value="B"> 2 feb
+                <br>
+                <br>
+                <input type="radio" name="q1" value="C"> 4 feb
+                <input type="radio" name="q1" value="D"> 6 feb
+            </div>
+            <div class="question">
+                <label> 2. What is the topic of our 1st conversation ?</label>
+                <input type="radio" name="q2" value="A"> fighting about maggie
+                <input type="radio" name="q2" value="B"> about soup
+                <br>
+                <br>
+                <input type="radio" name="q2" value="C"> aboout studies
+                <input type="radio" name="q2" value="D"> random hii hello
+            </div>
+            <div class="question">
+                <label>3.  What we ate on 1st time we go out(only two of us)?</label>
+                <input type="radio" name="q3" value="A"> biryani
+                <input type="radio" name="q3" value="B"> kulfi
+                <br>
+                <br>
+                <input type="radio" name="q3" value="C">ice_cream & shev_puri
+                <input type="radio" name="q3" value="D"> ice_cream & pani_puri
+            </div>
+            <div class="question">
+                <label> 4. Where we talk to each other in college for the 1st time?</label>
+                <input type="radio" name="q4" value="A"> library
+                <input type="radio" name="q4" value="B"> canteen
+                <br>
+                <br>
+                <input type="radio" name="q4" value="C"> class
+                <input type="radio" name="q4" value="D"> coin exhibition
+            </div>
+            <div class="question">
+                <label> 5. Where did i seen you for the 1st time before i met you?</label>
+                <input type="radio" name="q5" value="A"> cbt
+                <input type="radio" name="q5" value="B"> chanamma
+                <br>
+                <br>
+                <input type="radio" name="q5" value="C"> college campus
+                <input type="radio" name="q5" value="D"> class room
+            </div>
+            <div class="question">
+                <label>6. What was the 1st gift i gave to you ?</label>
+                <input type="radio" name="q6" value="A"> chocolate
+                <input type="radio" name="q6" value="B"> letter
+                <br>
+                <br>
+                <input type="radio" name="q6" value="C"> pendant
+                <input type="radio" name="q6" value="D"> bracelate
+            </div>
+            <div class="question">
+                <label>7. Where we had our 1st hug ?</label>
+                <input type="radio" name="q7" value="A"> hotle
+                <input type="radio" name="q7" value="B"> clg tarace
+                <br>
+                <br>
+                <input type="radio" name="q7" value="C"> vaijnath
+                <input type="radio" name="q7" value="D"> bus
+
+            </div>
+            <div class="question">
+                <label>8. On Wich part did i kissed you for the 1st time?</label>
+                <input type="radio" name="q8" value="A">hand
+                <input type="radio" name="q8" value="B"> neck
+                <br>
+                <br>
+                <input type="radio" name="q8" value="C">nose
+                <input type="radio" name="q8" value="D">lips
+            </div>
+            <div class="question">
+                <label>9. Where is our love story starts?</label>
+                <input type="radio" name="q9" value="A"> college
+                <input type="radio" name="q9" value="B"> cbt
+                <br>
+                <br>
+                <input type="radio" name="q9" value="C"> school
+                <input type="radio" name="q9" value="D">family function
+            </div>
+            <div class="question">
+                <label>10. What is the 1st promise between us?</label>
+                <input type="radio" name="q10" value="A"> be loyal to each other
+                <input type="radio" name="q10" value="B"> never lie to each other
+                <br>
+                <br>
+                <input type="radio" name="q10" value="C"> will not marry each other
+                <input type="radio" name="q10" value="D"> dont have fealings for each other
+            </div>
+            <button type="button" class="submit-button" onclick="checkAnswers()">Submit Answers</button>
+        </form>
+
+        <!-- Result Window -->
+        <div class="result-container" id="resultContainer">
+            <img id="resultImage" src="" alt="Result Image">
+            <h2 id="resultText"></h2>
+            <p id="scoreText"></p>
+        </div>
+
+        <!-- Letter Section (appears after passing the quiz) -->
+        <div class="letter-section" id="letterSection">
+            <h2>Congratulations! Here's your letter!</h2>
+            <img id="letterImage" src="letter_image.gif" alt="Animated Letter" onclick="redirectToLetterPage()">
+        </div>
     </div>
+
+    <script>
+        function checkAnswers() {
+            let score = 0;
+            const answers = {
+                q1: 'C',
+                q2: 'A',
+                q3: 'C',
+                q4: 'C',
+                q5: 'B',
+                q6: 'A',
+                q7: 'C',
+                q8: 'B',
+                q9: 'B',
+                q10: 'D'
+            };
+
+            // Check each question
+            for (let i = 1; i <= 10; i++) {
+                const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selectedAnswer && selectedAnswer.value === answers[`q${i}`]) {
+                    score++;
+                }
+            }
+
+            // Show result
+            const resultContainer = document.getElementById('resultContainer');
+            const resultImage = document.getElementById('resultImage');
+            const resultText = document.getElementById('resultText');
+            const scoreText = document.getElementById('scoreText');
+            const letterSection = document.getElementById('letterSection');
+
+            resultContainer.style.display = 'block';
+            scoreText.textContent = `Your Score: ${score}/10`;
+
+            if (score >= 7) {
+                resultImage.src = 'happy.png';  // Add your own happy face image
+                resultText.textContent = 'Congratulations! You passed!';
+                letterSection.style.display = 'block'; // Show the letter section after passing the quiz
+                window.scrollTo({ top: resultContainer.offsetTop, behavior: 'smooth' }); // Scroll to the result
+            } else {
+                resultImage.src = 'sad.png';  // Add your own sad face image
+                resultText.textContent = 'Sorry! You need at least 7 correct answers to read the letter.';
+            }
+        }
+
+        // Redirect to letter page
+        function redirectToLetterPage() {
+            window.location.href = 'letter.html';  // Redirect to the letter page
+        }
+    </script>
 </body>
 </html>
